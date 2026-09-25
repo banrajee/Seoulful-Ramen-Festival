@@ -1,0 +1,25 @@
+{
+  "name": "seoulful-ramen-festival",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "node scripts/festival-service.test.cjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.110.0",
+    "lucide-react": "0.468.0",
+    "next": "15.5.20",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.0",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "typescript": "5.9.3"
+  }
+}
