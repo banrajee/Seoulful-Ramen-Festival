@@ -1,0 +1,24 @@
+:root {
+  --paper: #f6ead2;
+  --paper-deep: #ead6b4;
+  --ink: #09262a;
+  --muted: #63706c;
+  --red: #c7352d;
+}
+
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--paper); }
+body { margin: 0; color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+
+.festival-admin-page { min-height: 100vh; padding: clamp(18px, 4vw, 48px); background: #f6ead2; }
+.festival-admin-panel { width: min(920px, 100%); margin: 0 auto; padding: clamp(18px, 4vw, 38px); border-radius: 18px; background: #fffaf0; box-shadow: 0 18px 45px rgba(67, 42, 20, 0.16); }
+.festival-admin-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.festival-admin-header h1 { margin: 0; color: var(--ink); }
+.festival-admin-header button, .festival-login-form button { padding: 10px 16px; border: 0; border-radius: 999px; color: #fff; background: var(--red); font-weight: 700; }
+.festival-login-form { display: grid; gap: 14px; margin-top: 24px; }
+.festival-login-form label { display: grid; gap: 6px; font-weight: 700; }
+.festival-login-form input { width: 100%; padding: 11px 13px; border: 1px solid rgba(9, 38, 42, 0.22); border-radius: 9px; background: #fff; }
+.festival-admin-message { padding: 10px 12px; border-radius: 8px; background: var(--paper-deep); }
+
