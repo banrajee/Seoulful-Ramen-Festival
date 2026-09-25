@@ -124,6 +124,15 @@ export function FestivalMenu() {
     return grouped;
   }, [entries, normalizedQuery]);
 
+  const displayedSections = activeSection === "ramen"
+    ? publicSections.filter((section) => section.id === "ramen" || section.id === "addons")
+    : publicSections.filter((section) => section.id === activeSection);
+
+  function selectSection(section: FestivalSection) {
+    setActiveSection(section);
+    if (section !== "ramen") setQuery("");
+  }
+
   return (
     <main className="festival-page">
       <div className="festival-shell">
@@ -132,15 +141,27 @@ export function FestivalMenu() {
           <p className="festival-slogan">Hot Ramen<br />Happier People</p>
         </header>
         <nav className="festival-nav" aria-label="Festival menu sections">
-          {navigationSections.map((section) => <a className={activeSection === section.id ? "active" : ""} href={`#festival-${section.id}`} key={section.id} onClick={() => setActiveSection(section.id)}>{section.label}</a>)}
+          {navigationSections.map((section) => (
+            <button
+              aria-pressed={activeSection === section.id}
+              className={activeSection === section.id ? "active" : ""}
+              key={section.id}
+              onClick={() => selectSection(section.id)}
+              type="button"
+            >
+              {section.label}
+            </button>
+          ))}
         </nav>
-        <label className="festival-search">
-          <Search size={17} aria-hidden="true" /><span className="sr-only">Search ramen</span>
-          <input type="search" placeholder="Search ramen..." value={query} onChange={(event) => setQuery(event.target.value)} />
-        </label>
+        {activeSection === "ramen" ? (
+          <label className="festival-search">
+            <Search size={17} aria-hidden="true" /><span className="sr-only">Search ramen</span>
+            <input type="search" placeholder="Search ramen..." value={query} onChange={(event) => setQuery(event.target.value)} />
+          </label>
+        ) : null}
         {loading ? <p className="festival-state" role="status">Loading festival menu…</p> : null}
         {error ? <p className="festival-state" role="alert">The festival menu is temporarily unavailable. Please check at the stall.</p> : null}
-        {!loading && !error ? publicSections.map((section) => {
+        {!loading && !error ? displayedSections.map((section) => {
           const rows = visibleBySection[section.id] ?? [];
           return (
             <section className={`festival-section festival-${section.id}-section`} id={`festival-${section.id}`} key={section.id}>
@@ -151,7 +172,7 @@ export function FestivalMenu() {
             </section>
           );
         }) : null}
-        {!loading && !error && visibleBySection.combos?.length ? (
+        {!loading && !error && activeSection === "ramen" && visibleBySection.combos?.length ? (
           <section className="festival-section festival-combos-section" id="festival-combos">
             <SectionHeading>Festival Combos</SectionHeading>
             <div className="festival-grid festival-combos-grid">{visibleBySection.combos.map((entry) => <FestivalItemCard key={entry.id} entry={entry} />)}</div>
