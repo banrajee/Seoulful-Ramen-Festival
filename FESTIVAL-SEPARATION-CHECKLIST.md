@@ -67,5 +67,5 @@ Verified against the production deployment on 25 September 2026:
 - [x] Every one of the 95 independently deployed public assets returns HTTP 200.
 - [x] Code-level and automated write-boundary checks prove festival saves target only `festival_items` or `festival_combos`; there is no `menu_items` update/insert/delete path.
 - [ ] A reversible authenticated festival test write is pending an owner sign-in. No credentials were available in the existing browser session, so no live data was changed or claimed as tested.
-- [x] The separate Vercel project deploys independently at `https://seoulful-ramen-festival.vercel.app`.
-- [ ] The separate GitHub repository exists at `https://github.com/banrajee/Seoulful-Ramen-Festival`; source publication is pending the final GitHub commit action.
+- [x] The separate Vercel project deploys independently at `https://seoulful-ramen-festival.vercel.app` and is connected to this repository's `main` production branch.
+- [x] The complete 122-file project tree is published independently at `https://github.com/banrajee/Seoulful-Ramen-Festival`; an API tree comparison found no missing or extra files.
