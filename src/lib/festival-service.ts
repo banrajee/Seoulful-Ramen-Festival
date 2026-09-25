@@ -44,3 +44,10 @@ export async function saveFestival(entry: FestivalEntry) {
  if(result.error) throw new Error(result.error.message);
 }
 
+export async function deleteFestival(entry: FestivalEntry) {
+ if (!entry.id) throw new Error("This festival selection has not been saved yet.");
+ const tableName = entry.section === "combos" ? "festival_combos" : "festival_items";
+ const result = await festivalClient().from(tableName).delete().eq("id", entry.id);
+ if (result.error) throw new Error(result.error.message);
+}
+
